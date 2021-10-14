@@ -18,11 +18,12 @@ for message in requestQueue.receive_messages(MessageAttributeNames=['Author']):
     
     # Let the queue know that the message is processed
     message.delete()
-test="1 2 3 4 5"
+
+test="1 2 3 4 6"
 testlist=test.split()
 sum=0
 for t in testlist:
     sum=sum+int(t)
 print(sum)
 moy=sum/len(testlist)
-print(moy)
+print(moy) 
