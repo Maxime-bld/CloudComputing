@@ -19,11 +19,35 @@ for message in requestQueue.receive_messages(MessageAttributeNames=['Author']):
     # Let the queue know that the message is processed
     message.delete()
 
-test="1 2 3 4 6"
-testlist=test.split()
+test="1 2 3 4 5"
+Stringlist=test.split()
+Intlist=list(map(int, Stringlist))
+
+# vérification de la validité des données d'entré
+if len(Intlist)>=10 :
+    print("il y a plus de 10 entier")
+else :
+    for i in Intlist :
+        if i<0 :
+            print("l'un des nombre est negatif")
+
+## ----------------------------------- | fonction de calculs | ----------------------------------- ##
+# calcule de la somme
+
 sum=0
-for t in testlist:
-    sum=sum+int(t)
+for t in Intlist:
+    sum=sum+t
 print(sum)
-moy=sum/len(testlist)
-print(moy) 
+moy=sum/len(Intlist)
+print(moy)
+
+# calcule du minimum et du maximum
+max = Intlist[0]
+min = Intlist[0]
+for i in Intlist :
+    if i < min :
+        min = i
+    if i > max :
+        max = i
+    
+print(min, "   ", max )
