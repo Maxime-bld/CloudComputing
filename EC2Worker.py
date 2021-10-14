@@ -12,9 +12,19 @@ for message in requestQueue.receive_messages(MessageAttributeNames=['Author']):
         author_name = message.message_attributes.get('Author').get('StringValue')
         if author_name:
             author_text = ' ({0})'.format(author_name)
-    response = responseQueue.send_message(MessageBody=author_text)
+    testlist=message.body.split()
+    sum=0
+    for t in testlist:
+        sum=sum+int(t)
+    print(sum)
+    moy=sum/len(testlist)
+    print(moy) 
+    result = '''Resultat pour {0} :
+Somme = {1}
+Moyenne = {2}'''.format(message.body,sum,moy)
+    response = responseQueue.send_message(MessageBody=result)
     # Print out the body and author (if set)
-    print('Hello, {0}!{1}'.format(message.body, author_text))
+    print('{0}'.format(message.body, author_text))
     
     # Let the queue know that the message is processed
     message.delete()
