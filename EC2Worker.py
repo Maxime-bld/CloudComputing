@@ -18,6 +18,7 @@ for message in requestQueue.receive_messages(MessageAttributeNames=['Author']):
     
     # Let the queue know that the message is processed
     message.delete()
+
 test="1 2 3 4 5"
 Stringlist=test.split()
 Intlist=list(map(int, Stringlist))
@@ -32,6 +33,7 @@ else :
 
 ## ----------------------------------- | fonction de calculs | ----------------------------------- ##
 # calcule de la somme
+
 sum=0
 for t in Intlist:
     sum=sum+t
