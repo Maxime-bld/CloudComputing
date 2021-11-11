@@ -60,7 +60,7 @@ function readTxtFile(txt,label){
               console.log(rf)
               var content = rf+label
               console.log(content)
-              fs.writeFile('D:/Fise3/Cloud/CloudComputing/nodeapp/'+txt+'.txt', content, err => {
+              fs.writeFile(txt+'.txt', content, err => {
                 if (err) {
                   console.error(err)
                   return
