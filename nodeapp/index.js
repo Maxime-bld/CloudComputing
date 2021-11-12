@@ -7,17 +7,30 @@ const s3 = new AWS.S3()
 const app = express()
 const port = 3000
 var rf;
+var prnumber=[];
 app.get('/', (req, res) => {
+  
   randomNumberGenerator()
+  
   res.render( __dirname  + '/index.html',{pic1:randomNumberArr[0],pic2:randomNumberArr[1],pic3:randomNumberArr[2],pic4:randomNumberArr[3]});
   var p1 = req.query; 
-  
+  var tabfiles=[];
   for (const property in p1) {
     console.log(`${property.match(/\((.*)\)/).pop()}`);
     var nbfile=`${property.match(/\((.*)\)/).pop()}`;
-    readTxtFile(randomNumberArr[nbfile-1],1);
+    readTxtFile(prnumber[nbfile-1],1);
+    tabfiles.push(nbfile)
   }
-  
+  for (var i = 0; i <= 3; i++) {
+    if (tabfiles.includes(i.toString())){
+      console.log("wut")
+    }
+    else{
+      readTxtFile(prnumber[i-1],0);
+    }
+    
+  }
+  prnumber = randomNumberArr;
 })
 
 app.listen(port, () => {
@@ -95,10 +108,14 @@ function readTxtFile(txt,label){
 function randomNumberGenerator(){
   rf=20;
   randomNumberArr=[];
+  randomNumber=0;
   for (let i=0;i<4;){
-      const randomNumber=String(Math.floor(Math.random()*rf)+1);
-      randomNumberArr.push(randomNumber);
-      i++;
+    do{
+      randomNumber=String(Math.floor(Math.random()*rf)+1);
+      
+    }while(randomNumberArr.includes(randomNumber));
+    randomNumberArr.push(randomNumber);
+    i++;
   }
 }
 
