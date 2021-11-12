@@ -9,11 +9,7 @@ const port = 3000
 var rf;
 var prnumber=[];
 
-app.use(express.static(__dirname + '/'));
-app.use(bodyParser.urlencoded({extend:true}));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
-app.set('views', __dirname);
+
 // Intercepte les requêtes
 app.get('/', (req, res) => {
   // Générer les nombre aléatoire
@@ -40,7 +36,11 @@ app.get('/', (req, res) => {
   }
   prnumber = randomNumberArr;
 })
-
+app.use(express.static(__dirname + '/'));
+app.use(bodyParser.urlencoded({extend:true}));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname);
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
@@ -77,20 +77,17 @@ function readTxtFile(txt,label){
       s3.getObject(params, function (err, data) {
           if (err) {
 
-            throw err;
-
           } else {
 
               rf = Buffer.from(data.Body).toString('utf8');
-              console.log(rf)
+              console.log(txt+'.txt avant '+rf)
               var content = rf+label
-              console.log(content)
+              console.log(txt+'.txt après '+content)
               fs.writeFile(txt+'.txt', content, err => {
                 if (err) {
                   console.error(err)
                   return
                 }
-                console.log("ok")
                 uploadFile(txt+".txt")
               })
               
