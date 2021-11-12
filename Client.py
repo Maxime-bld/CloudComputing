@@ -6,8 +6,25 @@ sqs = boto3.resource('sqs')
 requestQueue = sqs.get_queue_by_name(QueueName='requestQueue')
 responseQueue = sqs.get_queue_by_name(QueueName='responseQueue')
 message=None
-# Demande les entrée que nous allons envoyer à la queue de requête
-entre=input('Entrer jusque 10 nombre espacé de 1:')
+okToSend=False
+entre=0
+while(not okToSend):
+    okToSend=True
+    # Demande les entrée que nous allons envoyer à la queue de requête
+    entre=input('Entrer jusque 10 nombre espacé de 1:')
+    if len(entre)>=10 :
+        print("il y a plus de 10 entier")
+        okToSend=False
+    else :
+        for i in entre :
+            try :
+                if int(i)<0 :
+                    print("l'un des nombre est negatif")
+                    okToSend=False
+            except:
+                print("l'un des nombre est negatif")
+                okToSend=False
+
 response = requestQueue.send_message(MessageBody=entre)
 # Boucle qui attend la réponse
 while(message is None):
