@@ -1,8 +1,52 @@
 <html>
- <body>
-  PAGE
-  <h1><%= randomNumberArr %></h1>
-  <form method="get" action="/">
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Projet Cloud computing</title>
+  <style>
+    img {
+      display: block;
+      text-indent: -15px;
+      width: 50%;
+      min-height: 120px;
+      max-height: auto;
+    }
+
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      margin: 0;
+      vertical-align: bottom;
+      position: relative;
+      top: -1px;
+      *overflow: hidden;
+    }
+
+    .get {
+      width: 100px;
+      height: 50px;
+      border-radius: 15px;
+      border: 10px;
+      border-color: brown;
+      background-color: darkred;
+      color: azure;
+      float: right;
+      font-size: 24px;
+    }
+
+    .foo {
+      padding-top: 100px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+     <form method="get" action="/">
     
 <input name="hotdog+(1)" type="checkbox" id="myCheckbox1" />
 <label for="myCheckbox1"><img src="https://mybucket199973.s3.amazonaws.com/Base_Hotdogs/Hoddog/hotdog+(<%= pic1 %>).jpg" /></label>
@@ -13,7 +57,11 @@
 <input name="hotdog+(4)" type="checkbox" id="myCheckbox4" />
 <label for="myCheckbox4"><img src="https://mybucket199973.s3.amazonaws.com/Base_Hotdogs/Hoddog/hotdog+(<%= pic4 %>).jpg" /></label>
     <input type="submit" value="get">
+  </div>
   </form>
- </body>
+  <footer>
+    <p class="foo">© 2021 Arbaretaz Aurélien, Ballouard Maxime, Gautier Aleksander, Wu Jinda </p>
+  </footer>
+</body>
 
 </html>

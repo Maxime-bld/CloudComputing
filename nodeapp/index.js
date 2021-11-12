@@ -69,7 +69,9 @@ function readTxtFile(txt,label){
   }
       s3.getObject(params, function (err, data) {
           if (err) {
+
              // reject(err.message);
+
           } else {
               rf = Buffer.from(data.Body).toString('utf8');
               console.log(rf)
